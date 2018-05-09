@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "<kevin.ledieu.fr@gmail.com>",
+  "scripts": {
+    "start": "node index.js"
+  },
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.3.2"
