@@ -1,0 +1,10 @@
+{
+  "name": "SecalyBot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "<kevin.ledieu.fr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
