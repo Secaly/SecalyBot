@@ -1,24 +1,30 @@
 const discord = require('discord.js');
-const { Client } = require('pg');
 const client = new discord.Client();
+const db = require('./db')
+const fs = require('fs');
 
-const database = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true,
-});
-
-database.connect();
-
-database.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  database.end();
-});
 
 client.on('ready', function() {
   console.log('Bot ready');
+
+  db.connect();
+
+  db.query('CREATE TABLE IF NOT EXISTS users( \
+    id TEXT PRIMARY KEY, \
+    warn INTEGER DEFAULT 0)')
+    .then(res => console.log(res))
+    .catch(err => console.error(err));
+});
+
+fs.readdir('./events/', (err, files) => {
+  if (err) return console.error(err);
+  files.forEach(file => {
+    if (fs.lstatSync(`./events/${file}`).isFile()) {
+      let eventFunction = require(`./events/${file}`);
+      let eventName = file.split('.')[0];
+      client.on(eventName, (...args) => eventFunction.run(client, ...args));
+    }
+  });
 });
 
 client.login(process.env.BOT_TOKEN)
