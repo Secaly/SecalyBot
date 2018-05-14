@@ -44,7 +44,7 @@ exports.run = (client, message, args) => {
                 .setAuthor(
                   `${message.author.username}`, `${message.author.avatarURL}`
                 )
-                .setColor(0xEF5350)
+                .setColor(0xFFFF00)
                 .setDescription(
                   "```Nombre d'avertissement : " + result.rows[0].warn + "```"
                 )
