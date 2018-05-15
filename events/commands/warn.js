@@ -5,8 +5,6 @@ const db = require('../../db')
 
 exports.run = (client, message, args) => {
 
-  if (message.author.bot) return;
-
   if (!message.member.hasPermission('BAN_MEMBERS')) return;
 
   if (message.content.toLowerCase().includes('s.warn')
