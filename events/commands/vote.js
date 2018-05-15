@@ -4,7 +4,8 @@ exports.run = (client, message, args) => {
 
   args = args.slice(0).join(' ');
 
-  message.delete();
+  message.delete()
+    .catch(err => console.error(err));
   message.channel.send({
     embed: {
         color: 0xFFFF00,
