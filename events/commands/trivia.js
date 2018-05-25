@@ -36,7 +36,7 @@ const getResult = (reactions, correctAnswer) => {
       }
     });
     winners = winners.filter(winner => losers.every(loser => winner != loser));
-    losers = losers.filter(loser => loser != 'SecalyBot Test');
+    losers = losers.filter(loser => loser != 'SecalyBot');
     resolve({winners, losers});
   });
 }
